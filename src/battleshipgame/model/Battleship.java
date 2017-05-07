@@ -1,14 +1,11 @@
-package seabattle;
-
-import java.util.HashSet;
-import java.util.Set;
+package battleshipgame.model;
 
 /**
  * Created by yanair on 05.05.17.
  */
 public class Battleship {
 
-     enum Ship {
+    enum Ship {
         SINGLE_DECKER(SINGLE_DECKER_SIZE), TWO_DECKER(TWO_DECKER_SIZE),
         THREE_DECKER(THREE_DECKER_SIZE), FOUR_DECKER(FOUR_DECKER_SIZE);
 
@@ -38,30 +35,39 @@ public class Battleship {
     private static final int THREE_DECKER_SIZE          = 3;
 
     private int shipSize;
-    private Set<Field> occupiedFields = new HashSet<>();
+    private boolean horizontalDirection = false;
+    private int health;
 
     public Battleship(Ship ship) {
         this.shipSize = ship.getSize();
+        this.health = ship.getSize();
     }
 
     public int getShipSize() {
         return shipSize;
     }
 
-    public void addField(Field field) {
-        occupiedFields.add(field);
-    }
-
-    public void removeField(Field field) {
-        occupiedFields.remove(field);
-    }
-
-    public void receiveShot(Field field) {
-        for (Field f : occupiedFields) {
-            if (f.equals(field)) {
-                f.shoot();
-            }
+    public void receiveShot() {
+        if (isAlive()) {
+            health--;
         }
+    }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public boolean hasHorizontalDirection() {
+        return horizontalDirection;
+    }
+
+    public void rotate() {
+        horizontalDirection = !horizontalDirection;
+    }
+
+    @Override
+    public String toString() {
+        return "(Size " + shipSize + " / Horizontal direction : " + horizontalDirection + ")";
     }
 
 }
