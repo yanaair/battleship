@@ -135,7 +135,7 @@ public class Board extends Parent {
     }
 
     public void placeShipOnBoardRandomly(Battleship battleship) {
-        boolean shipPlaced = false;
+        boolean shipPlaced;
         Random random = new Random();
 
         do {
