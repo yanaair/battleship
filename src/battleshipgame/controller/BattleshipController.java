@@ -29,7 +29,6 @@ public class BattleshipController implements Initializable {
     private boolean gameRunning;
     private boolean enemyTurn;
 
-    private BattleshipFactory battleshipFactory;
     private Battleship currentPlayerShip;
 
     @FXML
@@ -68,10 +67,10 @@ public class BattleshipController implements Initializable {
     }
 
     private void initializeNewGame() {
+        BattleshipFactory battleshipFactory = new BattleshipFactory();
         gameResult.setText("");
         gameRunning = false;
         enemyTurn = false;
-        battleshipFactory = new BattleshipFactory();
         currentPlayerShip = battleshipFactory.getNextShip();
         playerBoard = new Board(playerBoardClickHandler(battleshipFactory), playerBoardMouseEnteredHandler(),
                                 playerBoardMouseExitedHandler(), true);
@@ -119,7 +118,6 @@ public class BattleshipController implements Initializable {
             if (gameRunning) {
                 return;
             }
-            Board.Field currentField = (Board.Field) event.getSource();
             playerBoard.removeShipPlacementHighlight();
         };
     }

@@ -24,4 +24,5 @@ public class BattleshipMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

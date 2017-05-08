@@ -32,7 +32,7 @@ public class Board extends Parent {
         for (int row = 0; row < ROW; row++) {
             HBox currentRow = new HBox();
             for (int col = 0; col < COL; col++) {
-                Field field = new Field(row, col, this);
+                Field field = new Field(row, col);
                 field.setOnMouseClicked(clickHandler);
                 currentRow.getChildren().add(field);
             }
@@ -47,7 +47,7 @@ public class Board extends Parent {
         for (int row = 0; row < ROW; row++) {
             HBox currentRow = new HBox();
             for (int col = 0; col < COL; col++) {
-                Field field = new Field(row, col, this);
+                Field field = new Field(row, col);
                 field.setOnMouseClicked(clickHandler);
                 field.setOnMouseEntered(mouseEnteredHandler);
                 field.setOnMouseExited(mouseExitedHandler);
@@ -141,7 +141,7 @@ public class Board extends Parent {
         do {
             int row = random.nextInt(10);
             int col = random.nextInt(10);
-            Field start = new Field(row, col, this);
+            Field start = new Field(row, col);
 
             if (random.nextBoolean()) {
                 battleship.rotate();
@@ -153,20 +153,19 @@ public class Board extends Parent {
 
     public Field getField(int row, int col) {
         HBox hBox = (HBox) rows.getChildren().get(row);
-        Field field = (Field) hBox.getChildren().get(col);
-        return field;
+        return (Field) hBox.getChildren().get(col);
     }
 
     public boolean receiveShot(Field field) {
         if (!playerBoard) {
-            sleep(500);
+            sleep();
         }
         return field.shoot();
     }
 
-    private void sleep(long millis) {
+    private void sleep() {
         try {
-            Thread.sleep(millis);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -188,7 +187,7 @@ public class Board extends Parent {
 
         private Battleship battleship;
 
-        private Field(int row, int column, Board board) {
+        private Field(int row, int column) {
             super(FIELD_SIZE, FIELD_SIZE);
             this.row = row;
             this.column = column;

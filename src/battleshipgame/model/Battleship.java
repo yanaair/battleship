@@ -21,12 +21,7 @@ public class Battleship {
     }
 
     enum Deck {
-        ONE(1), TWO(2), THREE(3), FOUR(4);
-
-        private int deck;
-        Deck(int deck){
-            this.deck = deck;
-        }
+        ONE, TWO, THREE, FOUR
     }
 
     private static final int FOUR_DECKER_SIZE           = 4;
@@ -38,26 +33,26 @@ public class Battleship {
     private boolean horizontalDirection = false;
     private int health;
 
-    public Battleship(Ship ship) {
+    Battleship(Ship ship) {
         this.shipSize = ship.getSize();
         this.health = ship.getSize();
     }
 
-    public int getShipSize() {
+    int getShipSize() {
         return shipSize;
     }
 
-    public void receiveShot() {
+    void receiveShot() {
         if (isAlive()) {
             health--;
         }
     }
 
-    public boolean isAlive() {
+    boolean isAlive() {
         return health > 0;
     }
 
-    public boolean hasHorizontalDirection() {
+    boolean hasHorizontalDirection() {
         return horizontalDirection;
     }
 

@@ -45,12 +45,12 @@ public class BattleshipFactory {
         }
     }
 
-    public static int getTotalShipsCount() {
+    static int getTotalShipsCount() {
         return Arrays.stream(new int []{getShipQuantity(Battleship.Deck.ONE), getShipQuantity(Battleship.Deck.TWO),
                 getShipQuantity(Battleship.Deck.THREE), getShipQuantity(Battleship.Deck.FOUR)}, 0, 4).sum();
     }
 
-    public Battleship getBattleship(Battleship.Deck deck) {
+    private Battleship getBattleship(Battleship.Deck deck) {
         switch (deck) {
             case ONE:
                 return new Battleship(Battleship.Ship.SINGLE_DECKER);
